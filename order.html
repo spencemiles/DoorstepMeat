@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doorstep Meat Delivery | Order Fresh Beef</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f0e3 0%, #e8d9c5 100%);
+            color: #3a2618;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(to right, #8b0000, #a52a2a);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 15px;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .info-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #8b0000;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0c9a6;
+            font-size: 1.8rem;
+        }
+        
+        .service-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .service-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #e0c9a6;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .service-list i {
+            margin-right: 12px;
+            color: #8b0000;
+            font-size: 1.2rem;
+        }
+        
+        .pricing {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .pricing h3 {
+            color: #8b0000;
+            margin-bottom: 15px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ffecb3;
+        }
+        
+        .price-row:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-info {
+            margin-top: 25px;
+        }
+        
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info i {
+            width: 30px;
+            color: #8b0000;
+            font-size: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #5d4037;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d7ccc8;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f9f5f0;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #8b0000;
+            box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.2);
+        }
+        
+        .quantity-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .quantity-input {
+            flex: 1;
+        }
+        
+        .calculate-btn {
+            background: #5d4037;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .calculate-btn:hover {
+            background: #8b0000;
+        }
+        
+        .price-display {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed #8b0000;
+        }
+        
+        .price-display h3 {
+            color: #8b0000;
+            margin-bottom: 10px;
+        }
+        
+        .total-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #8b0000;
+            margin: 10px 0;
+        }
+        
+        .per-kg {
+            font-size: 1rem;
+            color: #795548;
+        }
+        
+        .submit-btn {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: #a52a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        .delivery-time-note {
+            font-size: 0.9rem;
+            color: #795548;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #5d4037;
+            font-size: 0.9rem;
+        }
+        
+        .meat-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #8b0000;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        .required::after {
+            content: " *";
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-back-btn" onclick="history.back()">
+  &#8592; Back
+</button>
+<style>
+.mobile-back-btn {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 6px 10px;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Show and animate on mobile */
+@media (max-width: 767px) {
+  .mobile-back-btn {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+</style>
+    <div class="container">
+        <header>
+            <i class="fas fa-drumstick-bite meat-icon"></i>
+            <h1>Doorstep Meat Delivery</h1>
+            <p class="tagline">I deliver fresh, high-quality beef straight to your doorstep every morning. Whether you're a hotel, restaurant, club, or home, count on me for reliable, early-morning deliveries at an affordable price.</p>
+        </header>
+        
+        <div class="content">
+            <div class="info-section">
+                <h2>My Service</h2>
+                <ul class="service-list">
+                    <li><i class="fas fa-check-circle"></i> Fresh Beef</li>
+                    <li><i class="fas fa-check-circle"></i> Doorstep Delivery</li>
+                    <li><i class="fas fa-check-circle"></i> Timely Delivery</li>
+                    <li><i class="fas fa-check-circle"></i> Affordable Pricing</li>
+                </ul>
+                
+                <div class="pricing">
+                    <h3>Pricing</h3>
+                    <div class="price-row">
+                        <span>Orders above 4 kgs:</span>
+                        <strong>Ksh 550 per kg</strong>
+                    </div>
+                    <div class="price-row">
+                        <span>Orders below 4 kgs:</span>
+                        <strong>Ksh 600 per kg</strong>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <h2>Contact Me</h2>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <span>0748125262 (Jesse)</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-clock"></i>
+                        <span>Order Hours: 5:30 AM - 12:00 PM</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-calendar-day"></i>
+                        <span>Saturday Deliveries Available</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-section">
+                <h2>Place Your Order</h2>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="name" class="required">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address" class="required">Delivery Address</label>
+                        <textarea id="address" rows="3" placeholder="Enter full delivery address" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity" class="required">Quantity (kg)</label>
+                        <div class="quantity-group">
+                            <input type="number" id="quantity" min="0.5" step="0.5" placeholder="Enter quantity in kg" class="quantity-input" required>
+                            <button type="button" class="calculate-btn" id="calculateBtn">
+                                <i class="fas fa-calculator"></i> Calculate
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deliveryTime" class="required">Preferred Delivery Time</label>
+                        <select id="deliveryTime" required>
+                            <option value="">Select delivery time</option>
+                            <option value="5:30 AM">5:30 AM</option>
+                            <option value="6:00 AM">6:00 AM</option>
+                            <option value="6:30 AM">6:30 AM</option>
+                            <option value="7:00 AM">7:00 AM</option>
+                            <option value="7:30 AM">7:30 AM</option>
+                            <option value="8:00 AM">8:00 AM</option>
+                            <option value="8:30 AM">8:30 AM</option>
+                            <option value="9:00 AM">9:00 AM</option>
+                            <option value="9:30 AM">9:30 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="10:30 AM">10:30 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="11:30 AM">11:30 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                        </select>
+                        <p class="delivery-time-note">Note: Deliveries are available from 5:30 AM to 12:00 PM</p>
+                    </div>
+                    
+                    <div class="price-display">
+                        <h3>Your Order Summary</h3>
+                        <p>Total Price: <span class="total-price" id="totalPrice">Ksh 0</span></p>
+                        <p class="per-kg" id="pricePerKg">Price per kg: Ksh 0</p>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Doorstep Meat Delivery | Fresh beef delivered to your doorstep every morning</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateBtn = document.getElementById('calculateBtn');
+            const orderForm = document.getElementById('orderForm');
+            const totalPriceElement = document.getElementById('totalPrice');
+            const pricePerKgElement = document.getElementById('pricePerKg');
+            const quantityInput = document.getElementById('quantity');
+            
+            // Calculate price based on quantity
+            function calculatePrice() {
+                const quantity = parseFloat(quantityInput.value);
+                
+                if (isNaN(quantity) || quantity <= 0) {
+                    alert('Please enter a valid quantity');
+                    return;
+                }
+                
+                const pricePerKg = quantity >= 4 ? 550 : 600;
+                const totalPrice = quantity * pricePerKg;
+                
+                totalPriceElement.textContent = `Ksh ${totalPrice.toLocaleString()}`;
+                pricePerKgElement.textContent = `Price per kg: Ksh ${pricePerKg}`;
+            }
+            
+            // Submit form via WhatsApp
+            function submitOrder(event) {
+                event.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const quantity = document.getElementById('quantity').value;
+                const deliveryTime = document.getElementById('deliveryTime').value;
+                const totalPrice = totalPriceElement.textContent.replace('Ksh ', '');
+                
+                if (!name || !phone || !address || !quantity || !deliveryTime || totalPrice === '0') {
+                    alert('Please fill all required fields and calculate the price');
+                    return;
+                }
+                
+                // Format WhatsApp message
+                const message = `Hi Jesse! I'd like to order fresh beef:%0A%0A` +
+                               `*Name:* ${name}%0A` +
+                               `*Phone:* ${phone}%0A` +
+                               `*Delivery Address:* ${address}%0A` +
+                               `*Quantity:* ${quantity} kg%0A` +
+                               `*Delivery Time:* ${deliveryTime}%0A` +
+                               `*Total Price:* Ksh ${totalPrice}%0A%0A` +
+                               `Please confirm my order. Thank you!`;
+                
+                // Open WhatsApp with pre-filled message
+                window.open(`https://wa.me/254703125262?text=${message}`, '_blank');
+            }
+            
+            // Event listeners
+            calculateBtn.addEventListener('click', calculatePrice);
+            orderForm.addEventListener('submit', submitOrder);
+            
+            // Calculate price when quantity changes
+            quantityInput.addEventListener('input', function() {
+                if (parseFloat(quantityInput.value) > 0) {
+                    calculatePrice();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
